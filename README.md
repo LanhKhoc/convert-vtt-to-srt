@@ -1,0 +1,3 @@
+- Step 1: Copy your vtt files into subtitles folder
+- Step 2: Run "npm start"
+- Step 3: All vtt files will be converted into ouput folder
