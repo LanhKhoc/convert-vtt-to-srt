@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00:01.000 --> 00:00:07.260
+In the last section we successfully created a new component search bar exploited it and then rendered
+
+00:00:07.260 --> 00:00:09.100
+it inside of our app.
+
+00:00:09.450 --> 00:00:15.200
+In this section we're going to start to explore creating a component not with a function but with an
+
+00:00:15.210 --> 00:00:17.640
+easy access class.
+
+00:00:17.820 --> 00:00:19.740
+So check out our search bar right now.
+
+00:00:19.740 --> 00:00:22.200
+Right now it's a plain javascript function.
+
+00:00:22.260 --> 00:00:26.450
+Some information goes in you know maybe we've got some arguments in here in the future.
+
+00:00:26.610 --> 00:00:31.560
+And the only thing that comes out is some GSX and that GSX is what eventually ends up being rendered
+
+00:00:31.560 --> 00:00:34.170
+to the DOM.
+
+00:00:34.230 --> 00:00:38.100
+This is a component that we call a functional component.
+
+00:00:38.230 --> 00:00:43.320
+It's called a functional component because it literally is a function one function.
+
+00:00:43.320 --> 00:00:46.390
+Some info goes in some jacet X comes out.
+
+00:00:46.440 --> 00:00:47.110
+That's it.
+
+00:00:47.190 --> 00:00:48.590
+Very simple.
+
+00:00:49.260 --> 00:00:56.150
+There's another type of component in re-act which is called a class component a class component is used
+
+00:00:56.160 --> 00:01:01.470
+whenever you want a component to have some type of internal record keeping some ability for it to be
+
+00:01:01.770 --> 00:01:02.880
+aware of itself.
+
+00:01:02.910 --> 00:01:09.350
+And what's happened to it since it's been rendered because users are going to be typing into this input
+
+00:01:09.950 --> 00:01:15.690
+or you know this component is input right here our component really needs to have some ability to introspect
+
+00:01:15.690 --> 00:01:20.880
+itself someone believes to tell other parts the application stuff like Hey the user just typed something
+
+00:01:20.880 --> 00:01:24.480
+into my input here and here is exactly what they typed.
+
+00:01:24.480 --> 00:01:27.460
+You know it needs the ability to be all that more aware.
+
+00:01:28.140 --> 00:01:34.770
+So to upgrade this component from a functional component to a component with some you know more intelligence
+
+00:01:34.770 --> 00:01:37.040
+to it some greater complexity.
+
+00:01:37.410 --> 00:01:43.430
+We're going to create what's called a class based component and we are going to create it using a six
+
+00:01:43.440 --> 00:01:47.860
+class and six class is not like a CSSA class at all.
+
+00:01:47.880 --> 00:01:49.340
+Totally different.
+
+00:01:49.430 --> 00:01:54.290
+It's an actual javascript object with properties and methods to it.
+
+00:01:54.300 --> 00:01:59.670
+So let's go ahead and do the refactoring from a functional component to a class based component and
+
+00:01:59.670 --> 00:02:02.370
+then we'll talk about what some of the differences are.
+
+00:02:02.370 --> 00:02:08.910
+So to start Let's go ahead and delete everything we've got right here and we're going to start by declaring
+
+00:02:08.910 --> 00:02:18.910
+a new class a javascript class by writing class search bar and then curly braces like so.
+
+00:02:19.610 --> 00:02:24.810
+So this declares a new class with name search bar.
+
+00:02:24.840 --> 00:02:28.050
+This class is really just a plain javascript object of sorts.
+
+00:02:28.050 --> 00:02:30.600
+No you know a special behavior to it.
+
+00:02:30.600 --> 00:02:35.300
+We could declare a new instance of the class by writing something like new search bar.
+
+00:02:35.550 --> 00:02:44.850
+OK we're going to enhance this thing's behavior by extending it with you react based component class
+
+00:02:44.850 --> 00:02:44.870
+.
+
+00:02:44.880 --> 00:02:47.970
+And you know again just bear with me for a second here.
+
+00:02:48.570 --> 00:02:50.070
+After class search bar.
+
+00:02:50.090 --> 00:02:59.060
+We're gonna do another space and then write extends re-act dot component like so.
+
+00:02:59.400 --> 00:03:01.160
+So this can be read as.
+
+00:03:01.180 --> 00:03:11.220
+Define a new class called search bar and give it access to all of the functionality that re-act component
+
+00:03:11.250 --> 00:03:12.230
+has.
+
+00:03:12.240 --> 00:03:21.480
+In other words it gives our search bar a bunch of functionality from the react doc component class when
+
+00:03:21.480 --> 00:03:23.280
+we use a class based method.
+
+00:03:23.280 --> 00:03:26.030
+We still have to give it the ability to render itself somehow.
+
+00:03:26.050 --> 00:03:33.770
+You need to return some GSX to do so will define a method on the class called the render method.
+
+00:03:34.140 --> 00:03:41.130
+Every re-act component that we create That's class based must have a defined render method so will define
+
+00:03:41.130 --> 00:03:49.560
+it by writing method or seeing me render them parentheses a space and then curly braces.
+
+00:03:49.590 --> 00:03:50.220
+This is the.
+
+00:03:50.400 --> 00:03:54.030
+This is the syntax that we use for finding methods on a class.
+
+00:03:54.030 --> 00:03:56.810
+Notice that it looks different from a normal javascript object.
+
+00:03:56.820 --> 00:04:03.380
+You know we don't have a colon after render for example.
+
+00:04:03.420 --> 00:04:06.790
+It might not look like you know it's a function here because we don't have that colon.
+
+00:04:06.810 --> 00:04:08.950
+You know we don't have something it looks like colon function.
+
+00:04:09.030 --> 00:04:12.640
+But trust me this is still a function it's still a method here.
+
+00:04:12.690 --> 00:04:19.080
+So now whenever our app component tries to render a search bar instead of just calling a normal function
+
+00:04:19.140 --> 00:04:24.520
+you know which it was before it's going to try it's going to call this render function instead.
+
+00:04:24.870 --> 00:04:30.390
+So whenever we define a render function and every class must ever and their function we must return
+
+00:04:30.390 --> 00:04:31.440
+some GSX.
+
+00:04:31.440 --> 00:04:33.120
+Otherwise we'll end up with an air.
+
+00:04:33.420 --> 00:04:39.240
+So let's go ahead and make sure we follow that rule by adding some GSX that will return from this render
+
+00:04:39.240 --> 00:04:46.190
+method will right return input like so.
+
+00:04:46.270 --> 00:04:47.760
+All right so this looks pretty good.
+
+00:04:47.970 --> 00:04:52.400
+Let's go ahead and save it and give it a run in the browser.
+
+00:04:54.420 --> 00:04:56.630
+And we still get our input on the screen.
+
+00:04:56.820 --> 00:04:57.560
+Cool.
+
+00:04:57.810 --> 00:04:59.130
+OK.
+
+00:04:59.970 --> 00:05:02.040
+Two more things to talk about here.
+
+00:05:02.040 --> 00:05:05.290
+First we can clean up some of the code in here by using a little bit more.
+
+00:05:05.310 --> 00:05:06.650
+Yes 6 syntax.
+
+00:05:06.660 --> 00:05:09.070
+So let's do that first.
+
+00:05:09.240 --> 00:05:14.430
+Right now we have class search bar extends re-act doc component.
+
+00:05:14.640 --> 00:05:22.110
+We can clean up this reference right here by using a little bit of six syntax instead of writing re-act
+
+00:05:22.110 --> 00:05:23.230
+component.
+
+00:05:23.610 --> 00:05:31.500
+If we go back up to our import statement at the top where we have import react at a comma and then curly
+
+00:05:31.500 --> 00:05:40.540
+braces component then we'll drop the re-act dot from component right here.
+
+00:05:40.710 --> 00:05:44.580
+So this is just you know syntax syntactic sugar.
+
+00:05:44.580 --> 00:05:53.440
+This is the exact same thing as doing something like Konst component equals reactive component.
+
+00:05:53.700 --> 00:06:00.960
+The curly braces here just means import react and pull off the property component as a variable called
+
+00:06:00.960 --> 00:06:01.750
+component.
+
+00:06:01.900 --> 00:06:05.010
+OK so I don't go out and delete this.
+
+00:06:05.010 --> 00:06:05.900
+There we go.
+
+00:06:06.420 --> 00:06:12.000
+OK so I was the first one to talk about now the second thing I want to talk about here is just reiterate
+
+00:06:12.000 --> 00:06:13.890
+what's going on with the class here.
+
+00:06:14.430 --> 00:06:17.530
+Previously our search bar was a functional component.
+
+00:06:17.550 --> 00:06:21.730
+It was really just a you know what we would refer to as kind of a dumb component.
+
+00:06:21.780 --> 00:06:27.690
+It was just a function that we could call and it would return some plain GSX didn't have any ability
+
+00:06:27.690 --> 00:06:32.790
+to really be aware of its surroundings aware of its state or have the ability to communicate with other
+
+00:06:32.790 --> 00:06:39.120
+components very effectively because we want this component to be able to communicate with your other
+
+00:06:39.120 --> 00:06:44.010
+components that were going to be creating to say you know essentially something like Hey the user just
+
+00:06:44.010 --> 00:06:46.130
+typed in here and here is what they just typed.
+
+00:06:46.260 --> 00:06:53.550
+We decided to promote the search bar from a functional component to a class based component.
+
+00:06:53.840 --> 00:07:01.800
+When we write a class based component we write class the name of that component and then we extend re-act
+
+00:07:01.800 --> 00:07:07.280
+component and that basically gives this class a bunch of added functionality.
+
+00:07:07.740 --> 00:07:14.150
+Whenever we create a class component we must always define a render method and return some GSX.
+
+00:07:14.160 --> 00:07:21.180
+Otherwise you'll end up with an error to render a class based component total same practice as a functional
+
+00:07:21.180 --> 00:07:21.950
+base component.
+
+00:07:21.990 --> 00:07:23.280
+No difference whatsoever.
+
+00:07:23.490 --> 00:07:30.210
+So we're still going to just export search far and we still are over here in index or G-S we just write
+
+00:07:30.210 --> 00:07:33.910
+search bar inside of some GSX tags and we're good to go.
+
+00:07:34.830 --> 00:07:39.200
+So deciding when to use a class based component versus a functional based component tends to be you
+
+00:07:39.210 --> 00:07:40.730
+know kind of a little bit challenging.
+
+00:07:41.100 --> 00:07:46.350
+In general I really recommend you start off with a functional component and only when you decide that
+
+00:07:46.350 --> 00:07:53.190
+you need like added functionality should you start to factor it to a class as we go through vs application
+
+00:07:53.200 --> 00:07:53.350
+.
+
+00:07:53.490 --> 00:07:58.140
+I'll definitely point out where it's appropriate to use a functional vs. a class based component so
+
+00:07:58.370 --> 00:07:59.330
+don't sweat that part.
+
+00:07:59.340 --> 00:08:04.130
+We'll definitely talk about when to use one versus the other.
+
+00:08:04.560 --> 00:08:09.780
+OK so now that our refactor is done and everything still looks good over here in the browser Let's continue
+
+00:08:09.780 --> 00:08:10.940
+onto the next section.

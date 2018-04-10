@@ -1,0 +1,262 @@
+WEBVTT
+
+00:00:00.930 --> 00:00:05.210
+In the last section we began discussing the concept of State and react.
+
+00:00:05.400 --> 00:00:12.090
+Remember state is a plain javascript object that exists on any component that's a class based component
+
+00:00:12.110 --> 00:00:12.540
+.
+
+00:00:12.930 --> 00:00:17.260
+Each instance of a class based component has its own copy of states.
+
+00:00:17.900 --> 00:00:25.440
+We initialize the state by defining the constructor method and setting the state as the start state
+
+00:00:25.470 --> 00:00:27.010
+inside of it.
+
+00:00:27.120 --> 00:00:30.500
+We decided the name of this first property that we're going to use is turn.
+
+00:00:30.510 --> 00:00:35.040
+But these need the names of these properties aren't forced on us we could use any different property
+
+00:00:35.040 --> 00:00:36.030
+neither we want.
+
+00:00:36.030 --> 00:00:40.650
+And you'll see that here very shortly in this section we're going to continue making use of state by
+
+00:00:40.650 --> 00:00:45.760
+recording the value of our input on the state to do so.
+
+00:00:45.870 --> 00:00:49.060
+We're going to need to update our state inside of this function handler right here.
+
+00:00:49.080 --> 00:00:55.170
+So instead of doing a council log we're going to update our state updating state is a little bit differently
+
+00:00:55.230 --> 00:00:58.880
+different than creating it and it's really important to recognize the difference.
+
+00:00:59.100 --> 00:01:04.380
+So in our constructor we said this dot state equals object.
+
+00:01:04.380 --> 00:01:10.040
+This constructor function is the only time we will ever ever ever see code that looks like this right
+
+00:01:10.060 --> 00:01:11.840
+here to manipulate our state.
+
+00:01:11.850 --> 00:01:15.380
+And this is probably the barn number one like thing.
+
+00:01:15.390 --> 00:01:19.710
+I want you to take away from this course is making sure that you understand how to manipulate state
+
+00:01:20.070 --> 00:01:25.680
+so only inside of the constructor function do we change our state like this by just saying like this
+
+00:01:25.680 --> 00:01:27.360
+dot state equals blah.
+
+00:01:27.930 --> 00:01:33.780
+Everywhere else inside of all of our components we instead of using you know this dot state equals we'll
+
+00:01:33.780 --> 00:01:36.770
+use a method called this start set state.
+
+00:01:36.960 --> 00:01:45.300
+So let's to lead our console log here and we're going replace this with this dot set state and we pass
+
+00:01:45.360 --> 00:01:50.760
+an object that contains the new state that we want to have or do we want to give our component.
+
+00:01:51.150 --> 00:01:53.340
+I'll pass an object.
+
+00:01:53.660 --> 00:01:59.310
+That's a term and the value is going to be the new value of the input which is event.
+
+00:01:59.340 --> 00:02:03.470
+Target value like so.
+
+00:02:05.320 --> 00:02:07.330
+OK so I'm going to save this.
+
+00:02:08.250 --> 00:02:15.870
+And let's talk about this one more time to review so I make sure I'd drive it home in the constructor
+
+00:02:15.870 --> 00:02:15.930
+.
+
+00:02:15.930 --> 00:02:22.310
+We said this state equals an object everywhere else inside of our component to change our state.
+
+00:02:22.350 --> 00:02:28.220
+We use this start set state so we should never have something that looks like this starts state term
+
+00:02:28.290 --> 00:02:35.220
+equals you know event dot target dot value that never do that.
+
+00:02:35.820 --> 00:02:41.970
+We always manipulate our state with this dot set state using said state is what really allows us to
+
+00:02:42.000 --> 00:02:43.010
+maintain continuity.
+
+00:02:43.020 --> 00:02:47.680
+You know behind the scenes re-act is doing a tremendous amount of stuff with a state object.
+
+00:02:47.770 --> 00:02:49.220
+And so if we just change the value.
+
+00:02:49.230 --> 00:02:51.330
+Well re-act doesn't really know that the value change.
+
+00:02:51.330 --> 00:02:53.980
+So instead we use this method to inform react.
+
+00:02:54.010 --> 00:02:58.200
+Hey the state is changing and here's what the new state is.
+
+00:02:58.680 --> 00:02:59.400
+OK.
+
+00:02:59.550 --> 00:03:04.490
+So let's go ahead and save this and flip on over.
+
+00:03:04.560 --> 00:03:08.040
+Refresh and you'll see if we can still type just fine.
+
+00:03:08.030 --> 00:03:10.040
+Nothing like really changes here.
+
+00:03:10.410 --> 00:03:12.900
+Well so what's like the side effects of recording state.
+
+00:03:12.900 --> 00:03:15.640
+You know what are we why are we doing this at all what do we get out of this.
+
+00:03:15.690 --> 00:03:20.410
+Well I'll show you let's add a little bit more to this input component.
+
+00:03:20.820 --> 00:03:27.650
+I'm going to put the input on a new line and we'll wrap our GSX with some parentheses.
+
+00:03:27.690 --> 00:03:31.880
+Don't forget the semi-colon at the end like so.
+
+00:03:32.340 --> 00:03:39.960
+So we'll add a div around the input and then we'll put some plain text in here.
+
+00:03:40.050 --> 00:03:46.590
+We'll say value of the input and then we're going to reference a javascript variable and sort of inside
+
+00:03:46.590 --> 00:03:47.490
+of our GSX.
+
+00:03:47.490 --> 00:03:52.590
+And if you remember earlier I said I'm going to mention this many times whenever we reference a javascript
+
+00:03:52.590 --> 00:03:56.870
+variable we wrapped it with curly braces inside of GSX.
+
+00:03:56.940 --> 00:04:02.670
+So inside of here we'll write this state DOT term.
+
+00:04:02.670 --> 00:04:06.690
+Notice that I'm writing this dot state term because I'm not modifying the value of term.
+
+00:04:06.690 --> 00:04:07.760
+I'm just referencing it.
+
+00:04:07.770 --> 00:04:09.840
+I'm just saying hey here's what the value is.
+
+00:04:10.050 --> 00:04:14.800
+So it's OK to write this dot state that term to reference it just never do something like this not state
+
+00:04:14.800 --> 00:04:17.950
+that term equals five or four or what have you.
+
+00:04:18.360 --> 00:04:21.110
+OK so I going to save this man.
+
+00:04:21.120 --> 00:04:24.820
+Let's see what happens when we re render this now.
+
+00:04:25.170 --> 00:04:31.160
+OK so I've got value of the input and I'm going to start typing.
+
+00:04:31.830 --> 00:04:33.330
+Awesome.
+
+00:04:34.260 --> 00:04:41.550
+So as I type the text is showing up after Valeo the input as well.
+
+00:04:41.550 --> 00:04:44.490
+So what's this tell us look back over to our code here.
+
+00:04:44.550 --> 00:04:50.580
+So whenever we update the input element whenever we change the value of it this function right here
+
+00:04:50.580 --> 00:04:53.910
+runs because it's our event handler.
+
+00:04:54.330 --> 00:04:56.380
+We set the state.
+
+00:04:56.430 --> 00:05:01.540
+This dot state DOT term with the new value of the input.
+
+00:05:02.010 --> 00:05:07.650
+Whenever we update our state whenever we call this start set state it causes our component to automatically
+
+00:05:07.820 --> 00:05:15.090
+rewriter and push all those all the updated information from the render method into the dome because
+
+00:05:15.090 --> 00:05:18.630
+our render method makes reference to the start state DOT term.
+
+00:05:18.810 --> 00:05:24.010
+Every time that the component read renderers we get the updated this dot state dot term in the double
+
+00:05:24.020 --> 00:05:24.100
+.
+
+00:05:24.120 --> 00:05:32.190
+So that is like the full circle of state you know I am convinced that as time goes on you know it's
+
+00:05:32.190 --> 00:05:36.990
+going to seem kind of confusing but if you condense it all down to this you know very simple example
+
+00:05:36.990 --> 00:05:39.560
+right here and starts to make a lot more sense.
+
+00:05:39.570 --> 00:05:44.850
+Basically whenever you want to update our component in some fashion be thinking state.
+
+00:05:45.450 --> 00:05:46.020
+OK.
+
+00:05:46.140 --> 00:05:47.540
+So this looks good right here.
+
+00:05:47.700 --> 00:05:51.960
+I'm going to go ahead and remove this value the input right here because we're not going to be this
+
+00:05:52.510 --> 00:05:55.950
+will be the div right now though we'll probably use it for styling later on.
+
+00:05:55.950 --> 00:05:59.420
+So I going to say this let's refresh make sure everything still works.
+
+00:05:59.640 --> 00:06:00.680
+Yeah it looks good.
+
+00:06:00.910 --> 00:06:04.470
+OK let's wrap up state with a final review in the next section.

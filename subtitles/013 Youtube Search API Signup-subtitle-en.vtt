@@ -1,0 +1,283 @@
+WEBVTT
+
+00:00:00.860 --> 00:00:05.220
+And the last section we put together a plan for the different components that we're going to use inside
+
+00:00:05.220 --> 00:00:08.610
+of our application and created one file for each of them.
+
+00:00:08.700 --> 00:00:13.410
+Remember deciding how to break up your application into several components is a little bit arbitrary
+
+00:00:13.890 --> 00:00:17.650
+figuring out the best way to do it is something that really just comes with practice.
+
+00:00:17.940 --> 00:00:21.790
+In this section we're going to talk about exactly what videos we're going to play here.
+
+00:00:22.020 --> 00:00:25.560
+Well as I mentioned before they're going to be actual youtube videos.
+
+00:00:25.770 --> 00:00:32.210
+We're going to use the YouTube API to fetch data and show real YouTube videos to our users using the
+
+00:00:32.220 --> 00:00:36.440
+YouTube API is really a two step process.
+
+00:00:36.450 --> 00:00:42.290
+First we need to sign up for a youtube API Ickey getting access to API is 100 percent free.
+
+00:00:42.300 --> 00:00:44.490
+But you do need a key for it.
+
+00:00:44.520 --> 00:00:49.470
+YouTube is happy to let you search and play their videos but they really want to know who is searching
+
+00:00:49.470 --> 00:00:54.550
+through their videos as such we just need an API key to identify ourselves.
+
+00:00:54.570 --> 00:01:02.910
+Whenever we try to access their API after we sign up for the key install a small package that will make
+
+00:01:02.910 --> 00:01:06.910
+searching the searching process very simple.
+
+00:01:07.050 --> 00:01:11.800
+So lets go ahead and get to it in my browser.
+
+00:01:11.820 --> 00:01:18.750
+I'm going to navigate to Townsell dot developers dot Google dot com
+
+00:01:23.370 --> 00:01:28.170
+if you don't have a Google account you're going to need to sign up for one to get access to the dashboard
+
+00:01:28.170 --> 00:01:28.610
+.
+
+00:01:28.800 --> 00:01:29.950
+Google accounts are free.
+
+00:01:29.970 --> 00:01:34.360
+So just sign up for one really quick and come back to this dashboard.
+
+00:01:34.980 --> 00:01:39.520
+Now as great as Google is you know so many free services it's fantastic.
+
+00:01:39.570 --> 00:01:42.200
+Some of their interfaces are really tough to get around.
+
+00:01:42.270 --> 00:01:43.910
+So bear with me here.
+
+00:01:44.460 --> 00:01:51.750
+Once you're at the dashboard click on the icon on the top left the hamburger menu appear in the lines
+
+00:01:52.890 --> 00:01:58.710
+and then click on API manager.
+
+00:01:58.710 --> 00:02:00.240
+So this'll take us to another menu
+
+00:02:03.390 --> 00:02:06.050
+which is the API manager for our for your account.
+
+00:02:06.070 --> 00:02:09.650
+So as you can see there's many different API that you can find here.
+
+00:02:09.810 --> 00:02:14.030
+We're going to search for a very specific one where you can put in YouTube.
+
+00:02:14.580 --> 00:02:18.080
+Now you'll find YouTube data API v3.
+
+00:02:18.120 --> 00:02:21.990
+Make sure that you're using specifically this API right here.
+
+00:02:22.830 --> 00:02:28.420
+So just go ahead and click it and this page right here just tells you.
+
+00:02:28.430 --> 00:02:33.120
+Well you know once you sign off the API hears all the different things you can do blah blah blah whatever
+
+00:02:33.120 --> 00:02:33.940
+.
+
+00:02:33.960 --> 00:02:38.260
+At the top you'll find a button right here that says enable API.
+
+00:02:38.310 --> 00:02:43.410
+I've already enabled mine so right now right now this is disable but for you it'll probably say enable
+
+00:02:43.410 --> 00:02:50.970
+API go ahead and just click it it'll do some work and then it'll say you know disable API and I'll tell
+
+00:02:50.970 --> 00:02:53.770
+you that you successfully enable the API.
+
+00:02:54.720 --> 00:02:59.150
+So now that we have the API enabled we need to get an actual API key.
+
+00:02:59.430 --> 00:03:02.640
+So on the left hand side you'll find the credentials button.
+
+00:03:02.670 --> 00:03:03.870
+I'm going to go ahead and click it
+
+00:03:07.650 --> 00:03:16.170
+and then I'll click new credentials API key and then out of the four choices here we specifically want
+
+00:03:16.170 --> 00:03:18.790
+to get access to a browser key.
+
+00:03:18.810 --> 00:03:23.170
+So I'm going to click browser key you know Lassman name it.
+
+00:03:23.190 --> 00:03:27.110
+And I'm just going to say you know browser key two is fine.
+
+00:03:27.270 --> 00:03:29.990
+We don't need to put in a referrer right here.
+
+00:03:30.000 --> 00:03:31.790
+So totally optional.
+
+00:03:32.490 --> 00:03:38.950
+So Lasi me to do is just click Create.
+
+00:03:39.090 --> 00:03:46.320
+So now we get this pop up right here that has API key that we need to go ahead and select it and copy
+
+00:03:46.320 --> 00:03:47.420
+it.
+
+00:03:47.430 --> 00:03:51.840
+Now we're going to flip back over to our code editor and save the key right away.
+
+00:03:52.230 --> 00:03:58.080
+So at the very top I'm going to make a new line and we're going to declare a variable to hold this API
+
+00:03:58.080 --> 00:03:59.550
+key.
+
+00:03:59.550 --> 00:04:05.270
+Now remember when we're using E6 we don't use the VAR keyword to declare variables anymore.
+
+00:04:05.520 --> 00:04:10.260
+We can use Konst or we can also use lead and we'll talk about it in a little bit.
+
+00:04:10.260 --> 00:04:13.310
+We use Const whenever we make a variable that doesn't change.
+
+00:04:13.320 --> 00:04:19.800
+So as you might imagine this API key isn't ever going to change so we'll declare it as a concept and
+
+00:04:19.800 --> 00:04:27.090
+since it is a constant a true constant we'll write API underscore key so that anyone look at our code
+
+00:04:27.090 --> 00:04:29.210
+in the future knows that this is a constant.
+
+00:04:29.820 --> 00:04:31.680
+And then we'll put in a string.
+
+00:04:31.710 --> 00:04:38.020
+So you know quote double quote whichever one you prefer and then we'll just paste the key in.
+
+00:04:38.100 --> 00:04:38.490
+Cool.
+
+00:04:38.520 --> 00:04:43.450
+So we now have our API key which is going to allow us to make requests to YouTube.
+
+00:04:44.160 --> 00:04:49.890
+So the next step is to download and install a package that is going to help us make these search requests
+
+00:04:51.570 --> 00:04:52.530
+to do so.
+
+00:04:52.530 --> 00:04:58.870
+We're going to install an NPM package called YouTube API search this place.
+
+00:04:58.950 --> 00:05:05.220
+This package has basically one purpose giving an API key in a search term.
+
+00:05:05.220 --> 00:05:10.920
+It will go to make an API request for us in return some data you know a list of videos that match the
+
+00:05:10.920 --> 00:05:15.420
+search term like other packages that are already installed in this project.
+
+00:05:15.480 --> 00:05:21.950
+You know all the ones we see here in the modules folder we're going to install this using NPM or the
+
+00:05:21.960 --> 00:05:23.500
+node package manager.
+
+00:05:23.870 --> 00:05:31.230
+So over in my terminal I can make sure that I'm inside of my project directory and I'm going to install
+
+00:05:31.230 --> 00:05:33.140
+this as a new package.
+
+00:05:33.380 --> 00:05:44.100
+So all right NPM install dash dash save then YouTube dash API dash search.
+
+00:05:44.470 --> 00:05:46.980
+Let's make sure we get that all in one line.
+
+00:05:46.980 --> 00:05:48.130
+There we go.
+
+00:05:48.870 --> 00:05:49.390
+OK.
+
+00:05:49.740 --> 00:05:55.980
+So this is going to reach out to the NPM registry and install this package for us when we use the dash
+
+00:05:55.980 --> 00:05:56.520
+dash.
+
+00:05:56.520 --> 00:05:58.460
+Save right here.
+
+00:05:58.650 --> 00:06:01.670
+That means please save this to our package.
+
+00:06:01.730 --> 00:06:03.860
+Some file and of the project.
+
+00:06:04.080 --> 00:06:09.430
+The package just on file is a list of all the dependencies that our project has.
+
+00:06:09.660 --> 00:06:11.180
+So I just opened the package.
+
+00:06:11.190 --> 00:06:15.350
+It's on file right here and you'll see that we've already got a number of dependencies in here.
+
+00:06:15.360 --> 00:06:19.770
+You know these are the packages that were installed with this boilerplate application that allows it
+
+00:06:19.770 --> 00:06:23.630
+to you know make use of stuff like web pack in Babel.
+
+00:06:24.210 --> 00:06:28.180
+You can also see react and react on them in here.
+
+00:06:28.350 --> 00:06:30.490
+And you can also see the one that we just installed.
+
+00:06:30.540 --> 00:06:33.010
+YouTube API search.
+
+00:06:33.500 --> 00:06:34.750
+OK.
+
+00:06:34.820 --> 00:06:35.550
+So looks good.
+
+00:06:35.550 --> 00:06:37.010
+We got a package installed.
+
+00:06:37.200 --> 00:06:38.680
+Let's continue in the next section

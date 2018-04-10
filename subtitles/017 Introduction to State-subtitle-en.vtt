@@ -1,0 +1,214 @@
+WEBVTT
+
+00:00:01.060 --> 00:00:06.430
+The last section we figured out how to handle users typing into a input tag.
+
+00:00:06.450 --> 00:00:13.890
+We did this by first defining the input handler which is a function and then we passed it to the property
+
+00:00:13.950 --> 00:00:16.910
+onchange inside of the GSX task.
+
+00:00:17.460 --> 00:00:22.020
+We passed it specifically to the onchange event because any function passed to it will automatically
+
+00:00:22.020 --> 00:00:26.100
+be called when the inputs normal Change event is triggered.
+
+00:00:26.100 --> 00:00:32.190
+In this section we're going to start by talking about one of the most confusing topics in re-act state
+
+00:00:32.550 --> 00:00:35.570
+figure is probably better to bring this up sooner rather than later.
+
+00:00:35.850 --> 00:00:40.440
+State is almost definitely one of the hardest to understand topics and react and you'll find that it
+
+00:00:40.440 --> 00:00:45.070
+comes into you the front and center and we start concentrating on redux as well.
+
+00:00:45.330 --> 00:00:49.830
+So in this section we're going to focus on making sure that you have a solid grasp on exactly what state
+
+00:00:49.830 --> 00:00:52.020
+is.
+
+00:00:52.020 --> 00:00:59.130
+So let me start by defining it state as a plain javascript object that is used to record and react to
+
+00:00:59.130 --> 00:01:08.670
+user events each class based component that we define has its own state object whenever a component
+
+00:01:08.670 --> 00:01:15.780
+state is changed the component immediately renders and also forces all of its children to render as
+
+00:01:15.780 --> 00:01:16.730
+well.
+
+00:01:16.740 --> 00:01:23.230
+So if search bar had some states and it changed the render functional would be rewritten.
+
+00:01:23.670 --> 00:01:30.200
+And if we had other components inside of yours Well those would be re rendered as well.
+
+00:01:30.720 --> 00:01:37.350
+Before we ever use state inside of a component we need to initialize the state object to initialize
+
+00:01:37.350 --> 00:01:38.340
+state.
+
+00:01:38.370 --> 00:01:46.700
+We set the property state to a plain javascript object inside of the class's constructor method and
+
+00:01:46.750 --> 00:01:46.870
+.
+
+00:01:46.910 --> 00:01:48.100
+Okay that's super confusing.
+
+00:01:48.120 --> 00:01:52.270
+I know crazy confusing let's start throwing some code down and discuss what's happening.
+
+00:01:52.530 --> 00:01:55.140
+So inside a search bar I'm going to add a new method.
+
+00:01:55.170 --> 00:01:56.200
+At the very top.
+
+00:01:56.700 --> 00:01:59.990
+And we're going to call it constructor.
+
+00:02:00.210 --> 00:02:04.160
+I will put some code down here and we'll talk exactly what's going on.
+
+00:02:04.230 --> 00:02:13.530
+We had a argument called props and then we're going to call super props and then will say this state
+
+00:02:13.920 --> 00:02:19.650
+equals an object where a term is an empty string like so.
+
+00:02:20.200 --> 00:02:20.710
+OK.
+
+00:02:20.940 --> 00:02:25.020
+So this bit of code right here is going to start to get really familiar really quickly.
+
+00:02:25.290 --> 00:02:30.180
+This is how we define States or re-initialize States in a class based component.
+
+00:02:30.210 --> 00:02:36.680
+Remember functional components do not have state only class basic components do.
+
+00:02:36.720 --> 00:02:37.970
+So here's the summary.
+
+00:02:38.190 --> 00:02:43.460
+All javascript classes have a special function called constructor.
+
+00:02:43.460 --> 00:02:49.290
+The constructor function is the first and only function called automatically whenever a new instance
+
+00:02:49.290 --> 00:02:50.840
+of the class is created.
+
+00:02:51.090 --> 00:02:55.730
+So you can imagine that you know in reality this function gets called all the time because it's called
+
+00:02:55.740 --> 00:03:01.370
+whenever we create a new instance of search bar like right here inside of index Dot.
+
+00:03:01.410 --> 00:03:01.980
+Yes
+
+00:03:04.680 --> 00:03:10.380
+constructor function is reserved for doing some set up inside of our class like initializing variables
+
+00:03:10.830 --> 00:03:14.030
+and initializing state and stuff like that.
+
+00:03:14.040 --> 00:03:20.400
+So one weird thing that's going on here in here is this super right here.
+
+00:03:20.400 --> 00:03:28.980
+Remember how our component search bar extends component while component itself has its own constructor
+
+00:03:28.980 --> 00:03:30.120
+function.
+
+00:03:30.270 --> 00:03:36.570
+When we define a method that is already defined on the parent class which is component we can call that
+
+00:03:36.570 --> 00:03:41.820
+parent method on the parent class by calling super.
+
+00:03:42.150 --> 00:03:43.480
+I know that's confusing.
+
+00:03:43.740 --> 00:03:48.660
+Please bear with me for a bit and we'll focus on state for now and we'll talk more about super later
+
+00:03:48.660 --> 00:03:49.280
+on.
+
+00:03:49.500 --> 00:03:54.180
+If you ever object oriented programming background are you ever taken like C-s classes.
+
+00:03:54.210 --> 00:03:57.700
+You know we're doing here is we're calling the parent method here with super.
+
+00:03:58.020 --> 00:04:00.830
+If you're not familiar with any of that you know really don't sweat it.
+
+00:04:00.870 --> 00:04:05.460
+You can kind of view this as a little bit of black magic for right now if you don't call super here
+
+00:04:05.520 --> 00:04:06.540
+you'll end up with an air.
+
+00:04:06.570 --> 00:04:07.680
+So you don't sweat it.
+
+00:04:07.670 --> 00:04:10.340
+It always catch it for you.
+
+00:04:10.440 --> 00:04:13.720
+The second expression here is the one that we really care about.
+
+00:04:13.950 --> 00:04:16.270
+It's much more interesting to do a state.
+
+00:04:16.590 --> 00:04:24.330
+So whenever we use state we initialize it by creating a new object and assigning it to this start state
+
+00:04:25.410 --> 00:04:31.740
+the object we pass will also contain properties that we want to record on the state.
+
+00:04:31.770 --> 00:04:36.210
+In this case right here we want to record the term term.
+
+00:04:36.270 --> 00:04:43.960
+Really the I should say property term on state terms being search short for like search term basically
+
+00:04:43.960 --> 00:04:44.500
+.
+
+00:04:44.580 --> 00:04:51.610
+So whenever the user updates the search input this is the property right here this term is the property
+
+00:04:51.620 --> 00:04:54.380
+you want one update that or record that change on.
+
+00:04:54.690 --> 00:04:57.960
+So over time you could kind of imagine you know as you were going to do in the next section here very
+
+00:04:57.960 --> 00:05:05.400
+shortly as a user starts typing inside the input we want to update this dot state DOT term to not be
+
+00:05:05.400 --> 00:05:09.350
+empty string but to be the value of the input.
+
+00:05:09.900 --> 00:05:10.440
+OK.
+
+00:05:10.650 --> 00:05:13.450
+So let's continue talking about state in the next section.

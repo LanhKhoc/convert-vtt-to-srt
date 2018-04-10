@@ -1,0 +1,483 @@
+1
+00:00:00,750 --> 00:00:05,550
+In the last section we signed up for the YouTube API and this section we're going to go off on a little
+
+2
+00:00:05,550 --> 00:00:08,710
+bit of a tangent before we start making use of that API.
+
+3
+00:00:08,970 --> 00:00:13,200
+So instead of working with any of the data from YouTube just yet we're going to start working on the
+
+4
+00:00:13,200 --> 00:00:17,690
+search bar first in setting up the search for search bar.
+
+5
+00:00:17,730 --> 00:00:25,380
+We're going to cover three very important topics ex-party modules classes and state once we've discussed
+
+6
+00:00:25,380 --> 00:00:29,730
+these three concepts We'll come back to working with the data from the YouTube API.
+
+7
+00:00:30,540 --> 00:00:34,280
+So let's work on the search bar for a bit by opening search bar.
+
+8
+00:00:34,320 --> 00:00:35,250
+Jay Yes.
+
+9
+00:00:35,490 --> 00:00:40,860
+So is the purpose of this component again is just to make sure that we have an input at the top that
+
+10
+00:00:40,860 --> 00:00:44,100
+the user can type in and they type into the input.
+
+11
+00:00:44,190 --> 00:00:46,530
+It should update the video list on the right hand side.
+
+12
+00:00:46,620 --> 00:00:52,530
+So basically user types input we need to make an API request to the YouTube API.
+
+13
+00:00:53,940 --> 00:00:59,550
+So you haven't done anything in here just yet but we do know that we need a text input and when a user
+
+14
+00:00:59,550 --> 00:01:00,430
+types something in.
+
+15
+00:01:00,450 --> 00:01:02,520
+We need to do a search of some sort.
+
+16
+00:01:02,850 --> 00:01:07,370
+So let's define our component first in the same way that we define the one inside of index Dot.
+
+17
+00:01:07,450 --> 00:01:19,860
+Yes we'll say Konst search bar and we will define a function and return just an input.
+
+18
+00:01:19,920 --> 00:01:26,100
+We don't need to close the input because you know with like a closing input because we're not going
+
+19
+00:01:26,100 --> 00:01:32,190
+to put anything inside this component so this will generate in its T.M. input that the user can type
+
+20
+00:01:32,700 --> 00:01:34,560
+text into.
+
+21
+00:01:34,620 --> 00:01:40,110
+One other thing even though we're not making reference to a variable called you know react in here we
+
+22
+00:01:40,110 --> 00:01:46,980
+still need to include it so writes in poor re-act from react at the top.
+
+23
+00:01:47,010 --> 00:01:54,270
+We need to do this because remember whenever we can whenever we translate the GSX to normal javascript
+
+24
+00:01:54,600 --> 00:01:59,500
+it turns into a call like Riak dog create element.
+
+25
+00:01:59,500 --> 00:02:04,160
+And so if re-act isn't in the scope of this file Well it's going to throw in there.
+
+26
+00:02:04,380 --> 00:02:08,450
+So we just need to make sure that we import react into all of our components that we write that have
+
+27
+00:02:08,460 --> 00:02:09,850
+GSX.
+
+28
+00:02:10,490 --> 00:02:10,880
+OK.
+
+29
+00:02:10,890 --> 00:02:13,690
+So this is just going to show a no frills input.
+
+30
+00:02:13,700 --> 00:02:18,300
+Now we need something to make sure that the user can see it or we know we need to do something to make
+
+31
+00:02:18,300 --> 00:02:19,570
+sure the user can see it right now.
+
+32
+00:02:19,590 --> 00:02:24,390
+All we've done right now is define V define that component.
+
+33
+00:02:24,480 --> 00:02:27,890
+It's not being rendered to the DOM it's not being rendered inside of index.
+
+34
+00:02:27,990 --> 00:02:28,980
+Yes.
+
+35
+00:02:29,370 --> 00:02:34,120
+So do you remember that re-act components can show other components.
+
+36
+00:02:34,440 --> 00:02:41,880
+So if we get the search bar component over into index yes we can use indexed not just to show the input
+
+37
+00:02:41,880 --> 00:02:42,500
+.
+
+38
+00:02:42,630 --> 00:02:47,920
+Just one problem to render the search bar index needs a reference to this.
+
+39
+00:02:47,940 --> 00:02:54,480
+And remember as we mentioned previously all of our files are siloed from each other unless we explicitly
+
+40
+00:02:54,690 --> 00:02:57,510
+declare a connection between the two of them.
+
+41
+00:02:57,540 --> 00:03:02,990
+So we already learned how to import files that we haven't yet discussed how to export code.
+
+42
+00:03:03,060 --> 00:03:03,840
+Right we haven't.
+
+43
+00:03:03,960 --> 00:03:08,850
+We haven't learned what's happening on the other side of this re-act of this you know import state and
+
+44
+00:03:08,850 --> 00:03:10,950
+right here.
+
+45
+00:03:10,950 --> 00:03:12,360
+So think about it for a second.
+
+46
+00:03:12,420 --> 00:03:18,330
+A given file might have a ton of different coding that but we only want to export a small amount or
+
+47
+00:03:18,330 --> 00:03:20,870
+a subset of the code that we've written in here.
+
+48
+00:03:20,970 --> 00:03:26,700
+So to make sure that the only code that we export from this file is this component right here we're
+
+49
+00:03:26,760 --> 00:03:27,770
+right at the bottom.
+
+50
+00:03:27,870 --> 00:03:39,060
+Export default search bar now any file in our application that imports search bar will get our search
+
+51
+00:03:39,060 --> 00:03:40,310
+bar component.
+
+52
+00:03:40,320 --> 00:03:41,700
+It's kind of confusing words.
+
+53
+00:03:41,700 --> 00:03:46,140
+So let's you know go through it in practice and see what actually it looks like.
+
+54
+00:03:46,140 --> 00:03:49,070
+I'm going to save this file and then we'll flip back over to it.
+
+55
+00:03:49,130 --> 00:03:49,840
+When does it start.
+
+56
+00:03:49,890 --> 00:03:50,790
+Yes.
+
+57
+00:03:51,210 --> 00:04:00,960
+And at the top we'll write in your search bar from search your score bar.
+
+58
+00:04:02,130 --> 00:04:10,800
+So now when search bar is required or steamy imported into this file search bar will be equal to search
+
+59
+00:04:10,800 --> 00:04:12,970
+bar right here which is the component.
+
+60
+00:04:13,170 --> 00:04:13,770
+OK.
+
+61
+00:04:13,990 --> 00:04:20,190
+So the distinction I want to draw here is if we had some other variable inside of here let's say like
+
+62
+00:04:20,190 --> 00:04:23,400
+Konst foo equals five.
+
+63
+00:04:24,270 --> 00:04:30,850
+If we instead wrote export default foo search bar over here would be equal to 5.
+
+64
+00:04:30,870 --> 00:04:32,150
+Not the component.
+
+65
+00:04:32,430 --> 00:04:35,960
+So it's very critical to make sure that we correctly export.
+
+66
+00:04:36,010 --> 00:04:42,630
+You know the component outside of each file so I can delete this and replace it with search bar like
+
+67
+00:04:42,630 --> 00:04:43,460
+so.
+
+68
+00:04:43,830 --> 00:04:44,260
+OK.
+
+69
+00:04:44,340 --> 00:04:45,510
+One more thing.
+
+70
+00:04:45,600 --> 00:04:50,850
+Sure would be great if we could just write you know import search bar from search on her score bar and
+
+71
+00:04:50,850 --> 00:04:56,140
+then next xpect babble to correctly determine that OK they won't search far.
+
+72
+00:04:56,160 --> 00:04:58,470
+They must mean you know a search bar.
+
+73
+00:04:58,560 --> 00:05:00,520
+JS inside of the components folder.
+
+74
+00:05:00,690 --> 00:05:03,350
+Well you know unfortunately it's not quite the case.
+
+75
+00:05:03,660 --> 00:05:09,300
+Whenever we import code from a file that we write as a developer you know in actual javascript file
+
+76
+00:05:09,300 --> 00:05:15,140
+inside of here we have to give an actual file a reference to the file that we're trying to import.
+
+77
+00:05:15,660 --> 00:05:21,030
+We don't have to do that with libraries that we import because their namespace right we really have
+
+78
+00:05:21,390 --> 00:05:28,740
+one installed package called re-act that literally means go you know import re-act from re-act literally
+
+79
+00:05:28,740 --> 00:05:34,570
+means go into the node modules folder and get the directory called re-act same thing with re-act job
+
+80
+00:05:34,600 --> 00:05:35,800
+.
+
+81
+00:05:36,210 --> 00:05:38,480
+Juxtapose that with the search bar file.
+
+82
+00:05:38,790 --> 00:05:46,800
+I could have 10 files inside of my project right here called Search underscore Barcott Jay Yes and babbel
+
+83
+00:05:46,800 --> 00:05:49,470
+would just have no idea which of those you know different files.
+
+84
+00:05:49,470 --> 00:05:50,800
+I was asking for.
+
+85
+00:05:50,820 --> 00:05:55,740
+So whenever we are working with our own files whenever we're importing our own files we have to give
+
+86
+00:05:55,740 --> 00:05:57,700
+an actual file reference.
+
+87
+00:05:57,780 --> 00:06:04,940
+So what that means is we write the actual relative path from the file that we're importing it from.
+
+88
+00:06:04,980 --> 00:06:08,970
+So we're importing search bar into index dot Yes.
+
+89
+00:06:09,060 --> 00:06:16,500
+So all right here is in the current directory represented by a dot and then for a slash go into the
+
+90
+00:06:16,500 --> 00:06:27,590
+components folder come home and go and then find the file called Search under square bar.
+
+91
+00:06:27,690 --> 00:06:33,130
+We don't need to include the file extension on here so long as it is a dot JS file.
+
+92
+00:06:33,150 --> 00:06:38,970
+So again if it's a file that we write that we create ourselves we have to provide a file reference or
+
+93
+00:06:38,970 --> 00:06:41,010
+folder reference a path reference to it.
+
+94
+00:06:41,310 --> 00:06:47,930
+But if it's a library that we installed with no with NPM we can just write the name of the package.
+
+95
+00:06:48,030 --> 00:06:48,640
+OK.
+
+96
+00:06:49,140 --> 00:06:55,630
+So we've now successfully imported our search bar into index dot J us and now we want to show it inside
+
+97
+00:06:55,650 --> 00:06:56,810
+of app.
+
+98
+00:06:56,880 --> 00:07:00,260
+Give me the first time that we show another one component side of another.
+
+99
+00:07:00,480 --> 00:07:04,050
+Fortunately as you might imagine it's really straightforward.
+
+100
+00:07:04,290 --> 00:07:09,920
+I'm going to delete the high statement here and then I'm going to enter a new line.
+
+101
+00:07:10,050 --> 00:07:20,790
+So we'll add our search bar inside of this existing div by just writing search bar like so for a multi
+
+102
+00:07:20,790 --> 00:07:22,680
+line GSX expression like this.
+
+103
+00:07:22,710 --> 00:07:30,600
+Usually we'll use parentheses and put all the GSX inside of it like so.
+
+104
+00:07:31,010 --> 00:07:36,090
+So you can kind of imagine you know that looks this looks something like Hey return this big old glob
+
+105
+00:07:36,090 --> 00:07:39,160
+of GSX right here wrapped in the parentheses.
+
+106
+00:07:39,360 --> 00:07:43,440
+If you want to use the print you definitely don't have to just make sure that this div right here ends
+
+107
+00:07:43,440 --> 00:07:44,880
+up on the first line right here.
+
+108
+00:07:44,880 --> 00:07:46,260
+Otherwise I'll get in there.
+
+109
+00:07:46,700 --> 00:07:47,390
+OK.
+
+110
+00:07:47,610 --> 00:07:54,160
+So we've now declared a new component called search bar that contains just an input.
+
+111
+00:07:54,240 --> 00:08:02,760
+We exported that component from this file we imported it into index dot J Yes and then we rendered it
+
+112
+00:08:02,820 --> 00:08:11,310
+inside of our app component our app component is being rendered into the div inside of our index to
+
+113
+00:08:11,310 --> 00:08:13,740
+its single file with class container.
+
+114
+00:08:14,010 --> 00:08:18,310
+So you can kind of imagine you know this is starting to form a tree of sorts and tree of components
+
+115
+00:08:18,320 --> 00:08:18,670
+.
+
+116
+00:08:18,900 --> 00:08:26,970
+The very top level we have our app and then the first child inside of there is search bar are going
+
+117
+00:08:26,970 --> 00:08:33,950
+to go and save this and then flip back over to my browser let's refresh and it looks like we've got
+
+118
+00:08:33,950 --> 00:08:36,190
+an input here.
+
+119
+00:08:36,250 --> 00:08:36,700
+Cool.
+
+120
+00:08:36,720 --> 00:08:37,730
+This looks good.
+
+121
+00:08:38,040 --> 00:08:40,020
+Let's go ahead and continue inside the next section

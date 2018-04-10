@@ -1,0 +1,391 @@
+WEBVTT
+
+00:00:01.180 --> 00:00:08.150
+In the last section we refactor our search parts of the class instead of a functional component.
+
+00:00:08.190 --> 00:00:13.800
+We did this because we wanted the search bar to have some additional functionality functionality that
+
+00:00:13.800 --> 00:00:17.040
+would talk more about inside of this section.
+
+00:00:17.040 --> 00:00:24.150
+Whenever a user is making use of a web application they trigger events all the time events or something
+
+00:00:24.150 --> 00:00:29.280
+like you know say the user moves the mouse around or they click on an element or they type something
+
+00:00:29.280 --> 00:00:35.430
+into an input then this section we're going to focus on just how limited the ability to detect whenever
+
+00:00:35.430 --> 00:00:38.490
+a user enters something into an input like so.
+
+00:00:38.700 --> 00:00:43.560
+So when the user types something we want to know that they type something and we also want to know what
+
+00:00:43.560 --> 00:00:44.490
+it was that they typed
+
+00:00:47.490 --> 00:00:50.760
+handling events in re-act has two steps.
+
+00:00:50.790 --> 00:00:56.400
+First we declare an event handler and the event handler is a function that should be ran whenever the
+
+00:00:56.400 --> 00:00:57.830
+event occurs.
+
+00:00:58.140 --> 00:01:03.880
+Second we pass the event handler to the element that we want to monitor for events.
+
+00:01:03.900 --> 00:01:12.000
+So in our case we want to know whenever the input elements inside of our search bar has its text changed
+
+00:01:12.000 --> 00:01:12.560
+.
+
+00:01:12.600 --> 00:01:13.900
+So let's get to it.
+
+00:01:13.980 --> 00:01:19.200
+First we're going to find a function on the class that's going to run whenever the event occurs.
+
+00:01:19.200 --> 00:01:21.780
+And this is going to be our event handler.
+
+00:01:22.560 --> 00:01:27.750
+So we're going to find another method here and it's going to have the same general syntax as the render
+
+00:01:27.750 --> 00:01:29.010
+method up here.
+
+00:01:29.070 --> 00:01:37.320
+We're going to call it on input change in general I recommend that you name your event something like
+
+00:01:37.320 --> 00:01:37.620
+this.
+
+00:01:37.620 --> 00:01:43.440
+You can either do on in put change or Also the Riak community I see handle input change pretty often
+
+00:01:43.440 --> 00:01:44.080
+.
+
+00:01:44.130 --> 00:01:51.120
+Generally it's handle or on then the name of the input or say the name of the element that you're watching
+
+00:01:51.120 --> 00:01:52.070
+for an event.
+
+00:01:52.230 --> 00:01:54.360
+And then the name of the event itself.
+
+00:01:54.360 --> 00:02:02.600
+So in this case it's very easy to tell you know the purpose of this method whenever the input changes
+
+00:02:02.600 --> 00:02:02.910
+.
+
+00:02:03.090 --> 00:02:06.060
+Run the code inside of here.
+
+00:02:06.150 --> 00:02:12.360
+So next thing we're going to do after declaring this event handler is pass it to the element that we
+
+00:02:12.360 --> 00:02:15.450
+want to monitor which in this case is the input.
+
+00:02:15.450 --> 00:02:19.270
+So I'm first going to write some code in here and then we'll talk about what's going on.
+
+00:02:19.670 --> 00:02:30.650
+So I'm going to write another space and say on change equals this dot on inputs change.
+
+00:02:31.650 --> 00:02:32.300
+OK.
+
+00:02:33.000 --> 00:02:36.320
+So all each TMail elements right.
+
+00:02:36.420 --> 00:02:42.540
+Excuse me all the input elements like this emit a change event and I specifically say change because
+
+00:02:42.540 --> 00:02:47.950
+that's the name of the event change whenever the user interacts with them by typing something in.
+
+00:02:48.180 --> 00:02:52.250
+And that's not just a react thing that's like a normal vanilla You know each symbol in your browser
+
+00:02:52.260 --> 00:02:57.550
+thing to tap into a vanilla event like that and you're like a normal browser.
+
+00:02:57.570 --> 00:03:08.340
+That's all you have to do is write on than the name of the event then equals curly braces then the name
+
+00:03:08.340 --> 00:03:15.090
+of our or excuse me a reference to the method or the event handler which is for us this dot on input
+
+00:03:15.120 --> 00:03:15.750
+change
+
+00:03:18.260 --> 00:03:24.360
+whenever we're writing GSX and we're using javascript variables which you know distort input changes
+
+00:03:24.360 --> 00:03:24.640
+.
+
+00:03:24.660 --> 00:03:26.700
+We wrap it with curly braces.
+
+00:03:26.790 --> 00:03:30.780
+Don't forget the curly braces here and all appointee's curly braces out you know many different times
+
+00:03:30.780 --> 00:03:32.170
+.
+
+00:03:32.190 --> 00:03:36.960
+So again what this does is it says create a new input element and pass it.
+
+00:03:36.960 --> 00:03:45.690
+What will it refer to basically is as a prop you know a proper property onchange with a value of this
+
+00:03:45.750 --> 00:03:48.830
+dot on input change.
+
+00:03:49.740 --> 00:03:56.490
+OK so we've now declared our impersonal our event handler and we've passed the event handler to the
+
+00:03:56.580 --> 00:04:00.510
+element that we want to watch for the event.
+
+00:04:00.510 --> 00:04:06.510
+So let's go ahead and right here on the on input change.
+
+00:04:07.200 --> 00:04:11.840
+I'm going to add one argument in here and we're going to call it event.
+
+00:04:12.690 --> 00:04:19.380
+All browser events that get triggered by native elements like input or say you know a div or span or
+
+00:04:19.410 --> 00:04:20.670
+button or what have you.
+
+00:04:20.910 --> 00:04:26.640
+Whenever we add a event handler they're always called with any event object.
+
+00:04:26.650 --> 00:04:28.260
+This doesn't actually have to be named event.
+
+00:04:28.290 --> 00:04:29.680
+You know we can name it anything we want.
+
+00:04:29.700 --> 00:04:33.900
+It could be just easy or event object or what have you.
+
+00:04:33.910 --> 00:04:42.420
+Just usually we end up calling it event the event object describes the context or information about
+
+00:04:42.420 --> 00:04:43.700
+the event that occurred.
+
+00:04:43.710 --> 00:04:51.030
+So it's got a lot of like very specific very technical properties inside of it specifically in this
+
+00:04:51.030 --> 00:04:53.910
+case since we have a input element.
+
+00:04:54.300 --> 00:04:57.810
+We can use this event object to get access to the value of the input.
+
+00:04:57.810 --> 00:05:01.590
+So basically what the text was that was changed.
+
+00:05:01.590 --> 00:05:03.580
+So let's go ahead and try to console log that.
+
+00:05:03.600 --> 00:05:10.930
+I'm going to add console log and then to get access to the value of the input.
+
+00:05:11.190 --> 00:05:11.650
+All right.
+
+00:05:11.660 --> 00:05:15.650
+Event target value.
+
+00:05:16.470 --> 00:05:17.060
+All right.
+
+00:05:17.370 --> 00:05:24.180
+So let's go out and save this refresh of the browser and then type something out and you'll see inside
+
+00:05:24.180 --> 00:05:27.380
+of my console on the right hand side here.
+
+00:05:27.390 --> 00:05:32.460
+Whatever I type into the input gets console logged as well.
+
+00:05:32.520 --> 00:05:33.930
+So it looks good.
+
+00:05:34.650 --> 00:05:37.780
+So let's run through the process here one more time.
+
+00:05:38.010 --> 00:05:44.010
+We have an input element and we want to add event handler to it the event handler will be triggered
+
+00:05:44.100 --> 00:05:46.320
+whenever the event occurs.
+
+00:05:46.440 --> 00:05:49.920
+Specifically we want to watch for the change event on the input.
+
+00:05:50.100 --> 00:05:55.020
+So to get access to the change input we write on change.
+
+00:05:55.020 --> 00:05:58.440
+You know this is a protected or this is like a re-act define property.
+
+00:05:58.440 --> 00:06:01.190
+Here is a special property and you can find it.
+
+00:06:01.380 --> 00:06:06.770
+You can find out more info info about other events inside the reac docs.
+
+00:06:06.870 --> 00:06:13.860
+Once we specify the event name we then say equals curly braces and then the function or event handler
+
+00:06:14.430 --> 00:06:17.780
+which is this start on input change.
+
+00:06:17.790 --> 00:06:24.510
+Then inside of the class we define another method for the input handler season of the event handler
+
+00:06:25.560 --> 00:06:32.100
+and we choose to make to add the argument here at event because most event handlers are called with
+
+00:06:32.100 --> 00:06:37.860
+his event object and we can use that event object to kind of you know divine or introspect kind of just
+
+00:06:37.860 --> 00:06:40.600
+get more information about the event that just occurred.
+
+00:06:41.010 --> 00:06:46.620
+So we can write console log and that event at target value just to show you a little bit more about
+
+00:06:46.620 --> 00:06:48.030
+the event object itself.
+
+00:06:48.030 --> 00:06:50.490
+I'm going to delete the target value.
+
+00:06:50.640 --> 00:06:54.810
+So we're just going to cancel out the whole then object and refresh
+
+00:06:57.300 --> 00:06:58.980
+and I'm going to just type once.
+
+00:06:59.010 --> 00:07:05.190
+You'll see we get this object here so we can look at so many different properties and then is just chock
+
+00:07:05.190 --> 00:07:07.950
+full of a bunch of different stuff going on here.
+
+00:07:08.640 --> 00:07:12.740
+The target properties that we used which is specifically a reference to the input.
+
+00:07:12.750 --> 00:07:18.050
+You can see when I hover over it on the top left the input tag gets highlighted.
+
+00:07:18.200 --> 00:07:23.220
+And so if you write you know basically input value that returns a value inside of the input.
+
+00:07:23.880 --> 00:07:25.790
+OK so this looks great.
+
+00:07:25.860 --> 00:07:27.000
+I like it a lot.
+
+00:07:27.000 --> 00:07:32.490
+There just one little Reflektor I want to do just to give you a little bit more exposure to some ESX
+
+00:07:32.520 --> 00:07:34.080
+aero functions.
+
+00:07:34.650 --> 00:07:41.700
+So right now we've got a event handler that's defined as a method on the class but the console log that
+
+00:07:41.700 --> 00:07:46.980
+we're doing here is just really really simple really straightforward just a tiny snippet of code.
+
+00:07:47.790 --> 00:07:52.950
+So we're going to use a arrow function to just condense the code in here just to make it look a little
+
+00:07:52.950 --> 00:07:54.700
+bit more compact.
+
+00:07:54.870 --> 00:07:58.830
+We might change it back later on you know if we need to but I just want to take this opportunity to
+
+00:07:58.830 --> 00:08:00.020
+show it to you.
+
+00:08:00.060 --> 00:08:07.800
+So first we're going to add it back on the target value here and then up here inside of my functional
+
+00:08:07.800 --> 00:08:12.870
+handler I'm going to delete the existing function that we're passing in I'm stead going to write an
+
+00:08:12.870 --> 00:08:14.140
+arrow function.
+
+00:08:14.460 --> 00:08:25.920
+So all right events as the argument then arrow and then I'll just copy paste this entire line and I'm
+
+00:08:25.920 --> 00:08:32.850
+going to drop off the semi colon on there as well and then I'll go ahead and delete the entire handler
+
+00:08:32.850 --> 00:08:35.750
+down here like so.
+
+00:08:36.330 --> 00:08:38.440
+OK so I'm going to flip back over.
+
+00:08:38.520 --> 00:08:43.020
+Let's refresh and I still get my console log.
+
+00:08:43.020 --> 00:08:44.790
+I can even clean this up a little bit more.
+
+00:08:44.820 --> 00:08:49.560
+Whenever we have a single line arrow function you'll notice I didn't use an additional set of curly
+
+00:08:49.560 --> 00:08:50.770
+braces on here.
+
+00:08:51.150 --> 00:08:56.760
+If I have a single argument I can also drop off these leading parentheses like so it's going to save
+
+00:08:56.760 --> 00:09:01.680
+this and then type and you can see it still works just fine.
+
+00:09:02.190 --> 00:09:05.500
+So by using aero functions we can really clean up our code a lot.
+
+00:09:05.520 --> 00:09:10.800
+You know this is just remarkably less code than what we had before when we had to separate on input
+
+00:09:10.800 --> 00:09:13.670
+change method defined inside the class.
+
+00:09:13.800 --> 00:09:16.320
+So we will use the arrow functions like this.
+
+00:09:16.320 --> 00:09:21.030
+You know every now and then throughout this course you know just be aware that you'll find that syntax
+
+00:09:22.570 --> 00:09:26.360
+in a lot of different re-act apps just because it's so concise.
+
+00:09:26.670 --> 00:09:30.600
+OK so now that we got our event added on here let's continue in the next section.
